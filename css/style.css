@@ -1,0 +1,89 @@
+@charset "utf-8";
+html {
+    font-size: 62.5%;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+body {
+    margin: 0.5em 0em 0em 0em;
+    padding: 0.1em;
+    line-height: 1.5;
+    color: rgb(73, 72, 72);
+    font-family: "Helvetica Neue",
+    Arial,
+    "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans",
+    "Meiryo",
+    sans-serif;
+    text-align: center;
+    background-image: url(../img/road-220058.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: auto;
+}
+header, footer, h1, h2, h3, p, div, .container01, .filler01 {
+    margin: 0.5em 0em 0em 0em;
+    padding: 0.1em;
+}
+h1 {
+    font: 2em Rajdhani, "Noto SansJP";
+    color: rgb(181, 242, 252);
+    background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);
+}
+h2{
+    padding-left: 0.5em;
+    border-left: solid 0.5em darkgray;
+    text-align: left;
+}
+.container01 {
+    margin-right: auto;
+    margin-left: auto;
+    width: 80%;
+    height: 100%;
+    border-radius: 0.5em 1.5em;
+    background-color: rgba(245,245,245,0.4);
+    box-shadow: 0 0 0.5em rgb(73, 72, 72);
+}
+a {
+    color: black;
+    font-weight: 900;
+    text-decoration: none;
+}
+a:hover {
+    opacity: 0.7;
+}
+a > img {
+    width: 60px;
+    
+}
+.game {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    font-size: 0.7em;
+}
+.spacer {
+    width: 100%;
+    height: 30px;
+}
+footer > p {
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    margin: 0px;
+    padding: 1px;
+    color: whitesmoke;
+    font: 1em Rajdhani;
+    text-align: center;
+    background: rgba(1,24,31,0.7);
+}
+@media screen and (max-width: 480px){
+    body {
+        background-position: 50% 0%;
+        background-size: auto 812px;
+    }
+}
