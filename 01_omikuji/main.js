@@ -30,6 +30,7 @@ window.addEventListener("DOMContentLoaded",
 );
 
 const btn = document.getElementById("btn");
+const textButton = document.getElementById("text-btn");
 btn.addEventListener("click",
     function(){
         let resultText = ["大吉!!!!!", "吉!!!!", "中吉!!!", "小吉!!", "末吉!", "凶。。",];
@@ -37,20 +38,25 @@ btn.addEventListener("click",
         let resultFontSize = ["55px", "50px", "45px", "40px", "35px", "30px"];
         let n = Math.floor(Math.random() * resultText.length);
 
-        btn.textContent = resultText[n];
-        btn.style.color = resultColor[n];
-        btn.style.fontSize = resultFontSize[n];
+        let resultMaxSpeed = [10,10,8,5,5,5];
+        let resultMaxSize = [30,30,20,15,20,20];
+        let resultImage = ["images/star.png","images/sakura_hanabira.png","images/sakura_hanabira.png","images/sakura_hanabira.png","images/leaf.png","images/snowflakes.png"];
+
+        textButton.textContent = resultText[n];
+        textButton.style.color = resultColor[n];
+        textButton.style.fontSize = resultFontSize[n];
 
             // snowfall stop
         $(document).snowfall("clear");
         // jQueryのsnowfall
+
         $(document).ready(function(){
         $(document).snowfall({
-        maxSpeed : 5, // 最大速度
+        maxSpeed : resultMaxSpeed[n], // 最大速度
         minSpeed : 1, // 最小速度
-        maxSize : 20, // 最大サイズ
+        maxSize : resultMaxSize[n], // 最大サイズ
         minSize : 1, // 最小サイズ
-        image : 'images/sakura_hanabira.png'
+        image : resultImage[n]
         });
         });
         

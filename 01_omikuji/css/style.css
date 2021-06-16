@@ -59,6 +59,12 @@ button {
 #btn {
     position: relative;
     margin: 20px auto;
+    height: 45vh;
+    user-select: none;
+    cursor: pointer;
+    transition: .5s;
+    /* position: relative;
+    margin: 20px auto;
     width: 250px;
     height: 250px;
     line-height: 250px;
@@ -68,11 +74,24 @@ button {
     font-size: 40px;
     text-align: center;
     text-shadow: 1px 1px 1px rgba(255,255,255,0.65);
-    background: linear-gradient(#6795fd 0%, #afeeee 100%);
     box-shadow: 0 10px 0 grey;
     justify-content: center;
     user-select: none;
     cursor: pointer;
+    transition: .5s; */
+}
+#text-btn {
+    position: relative;
+    margin: 0 auto;
+    width: 250px;
+    height: 250px;
+    line-height: 250px;
+    color: rgb(255,0,212);
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.65);
+    justify-content: center;
     transition: .5s;
 }
 
@@ -156,5 +175,15 @@ footer > p {
     body {
         background-position: 50% 0%;
         background-size: auto 812px;
+    }
+    #btn {
+        height: 25vh;
+        margin: 0 auto;
+    }
+    #text-btn {
+        position: absolute;
+        bottom: -200px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
