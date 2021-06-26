@@ -63,22 +63,6 @@ button {
     user-select: none;
     cursor: pointer;
     transition: .5s;
-    /* position: relative;
-    margin: 20px auto;
-    width: 250px;
-    height: 250px;
-    line-height: 250px;
-    border-radius: 50%;
-    color: rgb(255,0,212);
-    font-weight: bold;
-    font-size: 40px;
-    text-align: center;
-    text-shadow: 1px 1px 1px rgba(255,255,255,0.65);
-    box-shadow: 0 10px 0 grey;
-    justify-content: center;
-    user-select: none;
-    cursor: pointer;
-    transition: .5s; */
 }
 #text-btn {
     position: relative;
@@ -95,15 +79,10 @@ button {
     transition: .5s;
 }
 
-#btn:hover {
-    background: linear-gradient(#da70d6 0%, pink 100%);
-}
-
 #btn:active {
     position: relative;
     top: 5px;
     left: 5px;
-    box-shadow: 0 5px 0 grey;
 }
 button:hover {
     background: linear-gradient(#da70d6 0%, pink 100%);
@@ -185,5 +164,10 @@ footer > p {
         bottom: -200px;
         left: 50%;
         transform: translateX(-50%);
+    }
+    #btn:active {
+        position: relative;
+        top: 5px;
+        left: 5px;
     }
 }
