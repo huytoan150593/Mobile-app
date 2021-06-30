@@ -38,6 +38,7 @@ header {
     font-size: 38px;
     font-weight: bold;
     text-align: center;
+    text-shadow: 5px 5px 5px rgba(255,255,255,0.65);
 }
 button {
     width: 80px;
@@ -51,7 +52,6 @@ button {
 .wrapper {
     position: relative;
     max-width: 100vw;
-    /* min-height: 100vh; */
     margin: 0;
     padding: 0 0 23px 0;
     text-align: center;
@@ -66,23 +66,26 @@ button {
 }
 #text-btn {
     position: relative;
-    margin: 0 auto;
-    width: 250px;
+    margin: 10px auto;
+    width: 100%;
     height: 250px;
     line-height: 250px;
     color: rgb(255,0,212);
-    font-weight: bold;
+    font-weight: 800;
     font-size: 40px;
     text-align: center;
-    text-shadow: 1px 1px 1px rgba(255,255,255,0.65);
+    text-shadow: 3px 3px 3px rgba(255,255,255,0.65);
     justify-content: center;
-    transition: .5s;
+    transition: 1s;
 }
 
 #btn:active {
     position: relative;
     top: 5px;
     left: 5px;
+}
+#btn:hover {
+    animation: shaking .3s infinite;
 }
 button:hover {
     background: linear-gradient(#da70d6 0%, pink 100%);
@@ -150,6 +153,15 @@ footer > p {
         height: 100%;
     }
 }
+@keyframes shaking {
+    0%{transform: translate(0px, 0px) rotateZ(0deg);}
+    25%{transform: translate(2px, 2px) rotateZ(1deg);}
+    50%{transform: translate(0px, 2px) rotateZ(0deg);}
+    75%{transform: translate(2px, 0px) rotateZ(-1deg);}
+    100%{transform: translate(0px, 0px) rotateZ(0deg);}
+}
+
+/* -----------------------Responsive for mobile------------------------ */
 @media screen and (max-width: 480px) {
     body {
         background-position: 50% 0%;
@@ -169,5 +181,13 @@ footer > p {
         position: relative;
         top: 5px;
         left: 5px;
+    }
+}
+
+/*------------------- Responsive for iphone 5/SE ------------------*/
+@media screen and (max-width: 320px) {
+    header {
+        padding-top: 0px;
+        margin: 0px;
     }
 }

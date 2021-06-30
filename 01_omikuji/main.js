@@ -35,12 +35,17 @@ btn.addEventListener("click",
     function(){
         let resultText = ["大吉!!!!!", "吉!!!!", "中吉!!!", "小吉!!", "末吉!", "凶。。",];
         let resultColor = ["#ff0000", "#c71585", "#ff1493", "#ff69b4", "#ff8c00", "#1e90ff"];
-        let resultFontSize = ["55px", "50px", "45px", "40px", "35px", "30px"];
+        let resultFontSize = ["80px", "80px", "70px", "60px", "50px", "40px"];
+        let resultSound = ["sound/omikuji_sound1.mp3", "sound/omikuji_sound2.mp3", "sound/omikuji_sound3.mp3", "sound/omikuji_sound4.mp3", "sound/omikuji_sound5.mp3", "sound/omikuji_sound5.mp3"];
         let n = Math.floor(Math.random() * resultText.length);
 
-        let resultMaxSpeed = [10,10,8,5,5,5];
+        let resultMaxSpeed = [20,20,15,10,5,5];
         let resultMaxSize = [30,30,20,15,20,20];
         let resultImage = ["images/star.png","images/sakura_hanabira.png","images/sakura_hanabira.png","images/sakura_hanabira.png","images/leaf.png","images/snowflakes.png"];
+
+        let music = new Audio(resultSound[n]);
+        music.currentTime = 0;
+        music.play();
 
         textButton.textContent = resultText[n];
         textButton.style.color = resultColor[n];
