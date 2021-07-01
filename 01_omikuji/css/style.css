@@ -25,11 +25,7 @@ body {
     background-position: center;
     height: 100%;
     width: auto;
-}
-
-p {
-    margin: 0;
-    padding: 0;
+    overflow: hidden;
 }
 
 header {
@@ -64,10 +60,29 @@ button {
     cursor: pointer;
     transition: .5s;
 }
-#text-btn {
+
+#btn1 {
+    position: relative;
+    margin: 20px auto;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    color: rgb(255,0,212);
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.65);
+    background: linear-gradient(#6795fd 0%, #afeeee 100%);
+    box-shadow: 0 10px 0 grey;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+}
+#text-btn, #text-btn1 {
     position: relative;
     margin: 10px auto;
-    width: 100%;
+    width: 120%;
+    transform: translateX(-8%);
     height: 250px;
     line-height: 250px;
     color: rgb(255,0,212);
@@ -79,14 +94,15 @@ button {
     transition: 1s;
 }
 
-#btn:active {
+#btn:active, #btn:active {
     position: relative;
     top: 5px;
     left: 5px;
 }
-#btn:hover {
+#btn:hover, #btn1:hover {
     animation: shaking .3s infinite;
 }
+
 button:hover {
     background: linear-gradient(#da70d6 0%, pink 100%);
 }
@@ -163,21 +179,24 @@ footer > p {
 
 /* -----------------------Responsive for mobile------------------------ */
 @media screen and (max-width: 480px) {
+    header {
+        font-size: 35px;
+        height: 20vh;
+    }
     body {
         background-position: 50% 0%;
         background-size: auto 812px;
     }
-    #btn {
-        height: 25vh;
+    #btn, #btn1, #btn2 {
         margin: 0 auto;
     }
     #text-btn {
         position: absolute;
-        bottom: -200px;
+        bottom: -182px;
         left: 50%;
         transform: translateX(-50%);
     }
-    #btn:active {
+    #btn:active, #btn1:active, #btn2:active {
         position: relative;
         top: 5px;
         left: 5px;
@@ -189,5 +208,6 @@ footer > p {
     header {
         padding-top: 0px;
         margin: 0px;
+        font-size: 30px;
     }
 }

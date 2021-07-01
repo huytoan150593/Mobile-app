@@ -1,14 +1,18 @@
 @charset "utf-8";
 html {
     font-size: 62.5%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 *, *::before, *::after {
     box-sizing: border-box;
 }
 body {
-    margin: 0.5em 0em 0em 0em;
-    padding: 0.1em;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
     line-height: 1.5;
     color: rgb(73, 72, 72);
     font-family: "Helvetica Neue",
@@ -18,16 +22,11 @@ body {
     "Meiryo",
     sans-serif;
     text-align: center;
-    background-image: url(../img/road-220058.jpg);
+    background-image: url(../img/big-sur-mountains-clouds-daylight-sunny-day-macos-big-sur-2560x1440-1492.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 100%;
-    width: auto;
-}
-header, footer, h1, h2, h3, p, div, .container01, .filler01 {
-    margin: 0.5em 0em 0em 0em;
-    padding: 0.1em;
+    overflow: hidden;
 }
 h1 {
     font: 2em Rajdhani, "Noto SansJP";
@@ -40,10 +39,9 @@ h2{
     text-align: left;
 }
 .container01 {
-    margin-right: auto;
-    margin-left: auto;
+    margin: 100px auto;
     width: 80%;
-    height: 100%;
+    max-width: 500px;
     border-radius: 0.5em 1.5em;
     background-color: rgba(245,245,245,0.4);
     box-shadow: 0 0 0.5em rgb(73, 72, 72);
@@ -86,5 +84,13 @@ footer > p {
     body {
         background-position: 50% 0%;
         background-size: auto 812px;
+    }
+    .container01{
+        margin: auto;
+    }
+}
+@media screen and (max-width: 320px){
+    a{
+        font-size: 0.8rem;
     }
 }
