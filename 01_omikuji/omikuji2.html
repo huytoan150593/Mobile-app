@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./favicon.ico">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/animate.css">
+    <title>おみくじゲーム</title>
+</head>
+<body id="container">
+    <div class="shutter opening"></div>
+    <button id="btn99" class="btn" type="button" onclick="history.back()">Back</button>
+    <header>
+        今日のあなたの運勢は？
+    </header>
+    <div class="wrapper wrapper2" title="大吉だといいね～">
+        <img id="btn2" src="./images/omikuji3.png" alt="">
+        <img id="img-btn"></img>
+    </div>
+    
+    <footer>
+        <p>Copyright 2021 by Nguyen Huy Toan</p>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="assets/snowfall.jquery.min.js"></script>
+    <script src="assets/jquery.lettering.js"></script>
+    <script src="assets/jquery.textillate.js"></script>
+    <script src="./main.js"></script>
+    <script>
+        imgEffect({
+            button: "#btn2",
+            image: "#img-btn"
+        });
+    </script>
+</body>
+</html>

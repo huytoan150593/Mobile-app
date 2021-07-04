@@ -10,7 +10,11 @@ html {
     box-sizing: border-box;
 }
 body {
-    margin: 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
     padding: 0;
     height: 100vh;
     line-height: 1.5;
@@ -21,12 +25,18 @@ body {
     "Hiragino Sans",
     "Meiryo",
     sans-serif;
-    text-align: center;
     background-image: url(../img/big-sur-mountains-clouds-daylight-sunny-day-macos-big-sur-2560x1440-1492.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     overflow: hidden;
+}
+.header {
+    position: absolute;
+    z-index: 99;
+    top: 30px;
+    width: 100%;
+    text-align: center;
 }
 h1 {
     font: 2em Rajdhani, "Noto SansJP";
@@ -85,6 +95,9 @@ footer > p {
         background-position: 50% 0%;
         background-size: auto 812px;
     }
+    .header {
+        top: 8px;
+    }
     .container01{
         margin: auto;
     }
@@ -92,5 +105,8 @@ footer > p {
 @media screen and (max-width: 320px){
     a{
         font-size: 0.8rem;
+    }
+    .header {
+        display: none;
     }
 }
