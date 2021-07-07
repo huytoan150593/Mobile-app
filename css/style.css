@@ -11,9 +11,6 @@ html {
 }
 body {
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin: auto;
     padding: 0;
     height: 100vh;
@@ -49,7 +46,10 @@ h2{
     text-align: left;
 }
 .container01 {
-    margin: 100px auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     width: 80%;
     max-width: 500px;
     border-radius: 0.5em 1.5em;
@@ -81,6 +81,7 @@ a > img {
 }
 footer > p {
     position: absolute;
+    left: 0;
     bottom: 5px;
     width: 100%;
     margin: 0px;
