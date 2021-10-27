@@ -78,8 +78,6 @@ button {
 #img-btn {
     width: 100px;
     height: auto;
-    opacity: 0;
-    transition: all 1s ease-in-out;
 }
 #btn, #btn2 {
     position: relative;
@@ -207,6 +205,7 @@ footer > p {
     75%{transform: translate(2px, 0px) rotateZ(-1deg);}
     100%{transform: translate(0px, 0px) rotateZ(0deg);}
 }
+
  
 /* -----------------------Responsive for mobile------------------------ */
 @media screen and (max-width: 480px) {

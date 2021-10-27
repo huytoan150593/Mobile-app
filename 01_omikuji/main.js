@@ -78,12 +78,9 @@ function imgEffect(options){
             let resultImage = ["images/star.png","images/sakura_hanabira.png","images/sakura_hanabira.png","images/sakura_hanabira.png","images/leaf.png","images/snowflakes.png"];
             let resultSound = ["sound/omikuji_sound1.mp3", "sound/omikuji_sound2.mp3", "sound/omikuji_sound3.mp3", "sound/omikuji_sound4.mp3", "sound/omikuji_sound5.mp3", "sound/omikuji_sound5.mp3"];
             let n = Math.floor(Math.random() * resultOmikuji.length);
-        
             let resultMaxSpeed = [20,20,15,10,5,5];
             let resultMaxSize = [30,30,20,15,20,20];
-            console.log("imgButton");
             imgButton.setAttribute("src",resultOmikuji[n]);
-            imgButton.style.opacity = 1;
             let music = new Audio(resultSound[n]);
             music.currentTime = 0;
             music.play();
@@ -101,9 +98,7 @@ function imgEffect(options){
             image : resultImage[n]
             });
             });
-        }, false );
-    
-    
+        }, false );  
 }
 
 
