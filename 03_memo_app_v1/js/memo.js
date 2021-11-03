@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded",
             return;
         } else {
             viewStorage();
-            saveLocalStorage(); 
+            saveLocalStorage();
+            delLocalStorage(); 
             selectTable(); 
         }
 }, false
@@ -31,8 +32,8 @@ function saveLocalStorage(){
                 viewStorage();
                 let w_msg = "LocalStorage" + key + " " + value + "を保存しました";
                 window.alert(w_msg);
-                key = "";
-                value = "";
+                document.querySelector("#textKey").value = "";
+                document.querySelector("#textMemo").value = "";
             }
     }, false
 );
@@ -81,4 +82,24 @@ function selectRadioBtn(){
         }
     }
     window.alert("select please");
+}
+
+function delLocalStorage(){
+    document.querySelector("#del").addEventListener("click",
+    function(e){
+        e.preventDefault();
+        let w_sel = "0";
+        w_sel = selectRadioBtn();
+        if(w_sel === "1"){
+            let key = document.getElementById("textKey").value;
+            let value = document.getElementById("textMemo").value;
+            localStorage.removeItem(key);
+            viewStorage();
+
+            let w_mgs = "LocalStorage" + key + " " + value + "を削除しました";
+            window.alert(w_mgs);
+            key.value = "";
+            value.value = "";
+        }
+    },false);
 }
