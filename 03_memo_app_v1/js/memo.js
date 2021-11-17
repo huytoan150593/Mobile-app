@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded",
         } else {
             viewStorage();
             saveLocalStorage();
-            delLocalStorage(); 
+            delLocalStorage();
+            allClearLocalStorage(); 
             selectTable(); 
         }
 }, false
@@ -28,12 +29,15 @@ function saveLocalStorage(){
                 window.alert("push something!!");
                 return;
             }else {
-                localStorage.setItem(key, value);
-                viewStorage();
-                let w_msg = "LocalStorage" + key + " " + value + "を保存しました";
-                window.alert(w_msg);
-                document.querySelector("#textKey").value = "";
-                document.querySelector("#textMemo").value = "";
+                let w_confirm = confirm("LocalStorage" + key + " " + value + "を保存しました");
+                if(w_confirm === true){
+                    localStorage.setItem(key, value);
+                    viewStorage();
+                    let w_msg = "LocalStorage" + key + " " + value + "を保存しました";
+                    window.alert(w_msg);
+                    document.querySelector("#textKey").value = "";
+                    document.querySelector("#textMemo").value = "";
+                }  
             }
     }, false
 );
@@ -59,8 +63,15 @@ function viewStorage() {
         td2.innerHTML = w_key;
         td3.innerHTML = localStorage.getItem(w_key);
     }
+    //JQuery plugin tablesorter
+$("#table1").tablesorter({
+    sortList: [[1,0]]
+});
+$("#table1").trigger("update");
 }
 
+
+//---------------------------------------------------------
 function selectTable(){
     let select = document.querySelector("#select");
     select.addEventListener("click",
@@ -91,15 +102,34 @@ function delLocalStorage(){
         let w_sel = "0";
         w_sel = selectRadioBtn();
         if(w_sel === "1"){
-            let key = document.getElementById("textKey").value;
-            let value = document.getElementById("textMemo").value;
-            localStorage.removeItem(key);
-            viewStorage();
-
-            let w_mgs = "LocalStorage" + key + " " + value + "を削除しました";
-            window.alert(w_mgs);
-            key.value = "";
-            value.value = "";
+            const key = document.getElementById("textKey").value;
+            const value = document.getElementById("textMemo").value;
+            let w_confirm = confirm("LocalStorage" + key + " " + value + "を削除しました");
+            if(w_confirm === true){
+                localStorage.removeItem(key);
+                viewStorage();
+                let w_mgs = "LocalStorage" + key + " " + value + "を削除しました";
+                window.alert(w_mgs);
+                key.value = "";
+                value.value = "";
+            }  
         }
     },false);
 }
+
+function allClearLocalStorage(){
+    const allClear = document.querySelector("#allClear");
+    allClear.addEventListener("click",
+        function(e){
+            e.preventDefault();
+            let w_confirm = confirm("LocalStorageのデータをすべて削除します。.\nよろしですか？");
+            if(w_confirm === true){
+                localStorage.clear();
+                viewStorage();
+                window.alert("LocalStorageのデータをすべて削除 (all clear) しました。");
+                document.getElementById("textKey").value = "";
+                document.getElementById("textMemo").value = "";   
+            }
+    },false);
+};
+
