@@ -59,7 +59,7 @@ function viewStorage() {
         tr.appendChild(td2);
         tr.appendChild(td3);
 
-        td1.innerHTML = "<input name='radio1' type='radio'>";
+        td1.innerHTML = "<input name='chkbox1' type='checkbox'>";
         td2.innerHTML = w_key;
         td3.innerHTML = localStorage.getItem(w_key);
     }
@@ -77,22 +77,36 @@ function selectTable(){
     select.addEventListener("click",
     function(e){
         e.preventDefault();
-        selectRadioBtn();
+        selectCheckBox();
     },false);
 }
 
-function selectRadioBtn(){
+function selectCheckBox(){
     let w_sel = "0";
-    var radio1 = document.getElementsByName("radio1");
-    var table1 = document.querySelector("#table1");
-    for(let i=0; i<radio1.length; i++){
-        if(radio1[i].checked){
-            document.getElementById("textKey").value = table1.rows[i+1].cells[1].firstChild.data;
-            document.getElementById("textMemo").value = table1.rows[i+1].cells[2].firstChild.data;
-            return w_sel = "1";
+    let w_cnt = 0;
+    const chkbox1 = document.getElementsByName("chkbox1");
+    const table1 = document.querySelector("#table1");
+    let w_textKey = "";
+    let w_textMemo = "";
+    for(let i=0; i<chkbox1.length; i++){
+        if(chkbox1[i].checked){
+            if(w_cnt === 0){
+                w_textKey = table1.rows[i+1].cells[1].firstChild.data;
+                w_textMemo = table1.rows[i+1].cells[2].firstChild.data;
+            }
+            // document.getElementById("textKey").value = table1.rows[i+1].cells[1].firstChild.data;
+            // document.getElementById("textMemo").value = table1.rows[i+1].cells[2].firstChild.data;
+            // return w_sel = "1";
+            w_cnt++;
         }
     }
-    window.alert("select please");
+    w_textKey = document.querySelector("#textKey").value;
+    w_textMemo = document.querySelector("#textMemo").value;
+    if(w_cnt === 1){
+        return w_sel = "1";
+    }else{
+        window.alert("which one select please");
+    } 
 }
 
 function delLocalStorage(){
@@ -100,7 +114,7 @@ function delLocalStorage(){
     function(e){
         e.preventDefault();
         let w_sel = "0";
-        w_sel = selectRadioBtn();
+        w_sel = selectCheckBox();
         if(w_sel === "1"){
             const key = document.getElementById("textKey").value;
             const value = document.getElementById("textMemo").value;
