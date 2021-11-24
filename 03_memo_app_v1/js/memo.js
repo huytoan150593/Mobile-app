@@ -43,32 +43,6 @@ function saveLocalStorage(){
 );
 }; 
 
-function viewStorage() {
-    const list = document.querySelector("#list");
-    while(list.rows[0]) list.deleteRow(0);
-    for( let i=0; i<localStorage.length; i++){
-        let w_key = localStorage.key(i);
-
-        let tr = document.createElement("tr");
-        let td1 = document.createElement("td");
-        let td2 = document.createElement("td");
-        let td3 = document.createElement("td");
-
-        list.appendChild(tr);
-        tr.appendChild(td1);
-        tr.appendChild(td2);
-        tr.appendChild(td3);
-
-        td1.innerHTML = "<input name='chkbox1' type='checkbox'>";
-        td2.innerHTML = w_key;
-        td3.innerHTML = localStorage.getItem(w_key);
-    }
-    //JQuery plugin tablesorter
-$("#table1").tablesorter({
-    sortList: [[1,0]]
-});
-$("#table1").trigger("update");
-}
 
 
 //---------------------------------------------------------
@@ -100,13 +74,40 @@ function selectCheckBox(){
             w_cnt++;
         }
     }
-    w_textKey = document.querySelector("#textKey").value;
-    w_textMemo = document.querySelector("#textMemo").value;
+    document.querySelector("#textKey").value = w_textKey;
+    document.querySelector("#textMemo").value = w_textMemo;
     if(w_cnt === 1){
         return w_sel = "1";
     }else{
         window.alert("which one select please");
     } 
+}
+
+function viewStorage() {
+    const list = document.querySelector("#list");
+    while(list.rows[0]) list.deleteRow(0);
+    for( let i=0; i<localStorage.length; i++){
+        let w_key = localStorage.key(i);
+
+        let tr = document.createElement("tr");
+        let td1 = document.createElement("td");
+        let td2 = document.createElement("td");
+        let td3 = document.createElement("td");
+
+        list.appendChild(tr);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+
+        td1.innerHTML = "<input name='chkbox1' type='checkbox'>";
+        td2.innerHTML = w_key;
+        td3.innerHTML = localStorage.getItem(w_key);
+    }
+    //JQuery plugin tablesorter
+$("#table1").tablesorter({
+    sortList: [[1,0]]
+});
+$("#table1").trigger("update");
 }
 
 function delLocalStorage(){
@@ -124,8 +125,8 @@ function delLocalStorage(){
                 viewStorage();
                 let w_mgs = "LocalStorage" + key + " " + value + "を削除しました";
                 window.alert(w_mgs);
-                key.value = "";
-                value.value = "";
+                document.getElementById("textKey").value = "";
+                document.getElementById("textMemo").value = "";
             }  
         }
     },false);
@@ -134,8 +135,8 @@ function delLocalStorage(){
 function allClearLocalStorage(){
     const allClear = document.querySelector("#allClear");
     allClear.addEventListener("click",
-        function(e){
-            e.preventDefault();
+    function(e){
+        e.preventDefault();
             let w_confirm = confirm("LocalStorageのデータをすべて削除します。.\nよろしですか？");
             if(w_confirm === true){
                 localStorage.clear();
@@ -144,6 +145,6 @@ function allClearLocalStorage(){
                 document.getElementById("textKey").value = "";
                 document.getElementById("textMemo").value = "";   
             }
-    },false);
+        },false);
 };
 
