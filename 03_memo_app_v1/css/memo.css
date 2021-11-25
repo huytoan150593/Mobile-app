@@ -37,11 +37,12 @@ th, td {
 /* 見出し                                              */
 /*******************************************************/
 h1 {
-    color: rgb(165, 243, 243);
+    color: rgb(20, 20, 20);
+    font-size: 3rem;
 }
 h2 {
     /* color: grey; */
-    color: whitesmoke;
+    color: rgb(20, 20, 20);
     font-weight: 1000;
 }
 
@@ -62,7 +63,7 @@ h2 {
 label {
   position: absolute;
   left:0.5em;
-  color: whitesmoke;
+  color: rgb(20, 20, 20);
   font-weight: 1000;
 }
 
@@ -71,8 +72,8 @@ label::after {
   margin-left: 1em;
   padding: 0px 6px;
   border-radius: 4px;
-  font-size: 0.6em;
-  background-color: #c44;
+  font-size: 0.8em;
+  background-color: rgba(212,68,68,.8);
   content: "必須";
 }
 /* テキストエリア */
@@ -80,11 +81,13 @@ textarea{
   position: absolute;
   top: 2em;
   left: 3em;
+  border-radius: 3px;
+  
 }
 
 /* ★自分でコーディングする！(code by yourself)...  疑似要素「::placeholder」を使って、textareaの文字の色を定義する。*/
 textarea::placeholder {
-  color: #46aef7;
+  color: rgb(20, 20, 20);
 }
 /* ボタン */
 .btn-area{
@@ -96,7 +99,7 @@ textarea::placeholder {
   border-radius: 0.3em;
   color: whitesmoke;
   font-size: 1em;
-  background: rgb(26, 212, 212);
+  background: rgba(20, 20, 20,0.7);
   cursor: pointer; /*カーソルをポインターの形（かたち）にする*/
 }
 
@@ -118,7 +121,7 @@ table th, table td {
   text-align: center;
 }
 table tr {
-  background: #46aef7;
+  background: rgb(20, 20, 20);
 }
 .width10 {
   width: 10%;
@@ -168,6 +171,6 @@ table tr {
   border-radius: 0.3em;
   color: whitesmoke;
   font-size: 1.5em;
-  background: rgb(26, 212, 212);
+  background: grey;
   cursor: pointer; /*カーソルをポインターの形（かたち）にする*/
 }
