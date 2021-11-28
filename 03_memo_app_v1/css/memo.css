@@ -62,7 +62,7 @@ h2 {
 /* ラベル */
 label {
   position: absolute;
-  left:0.5em;
+  left:2.5em;
   color: rgb(20, 20, 20);
   font-weight: 1000;
 }
@@ -82,7 +82,6 @@ textarea{
   top: 2em;
   left: 3em;
   border-radius: 3px;
-  
 }
 
 /* ★自分でコーディングする！(code by yourself)...  疑似要素「::placeholder」を使って、textareaの文字の色を定義する。*/
