@@ -26,13 +26,13 @@ function saveLocalStorage(){
             if(key == "" || value == ""){
                 Swal.fire({
                     title: "Memo app",
-                    html: "Key, Memo はいずれも必須です。",
+                    html: "1件はいずれも必須です。",
                     type: "error",
                     allowOutsideClick: false
                 });
                 return;
             }else {
-                let w_msg = "LocalStorage \n" + key + " " + value + "\nを保存しましたか。";
+                let w_msg = "LocalStorage \n" + key + " " + value + "\nを保存しますか。";
                 Swal.fire({
                     title: "Memo app",
                     html: w_msg,
@@ -90,7 +90,7 @@ function selectCheckBox(mode){
         }else{
             Swal.fire({
                 title: "Memo app",
-                html: "Key, Memo はいずれも必須です。",
+                html: "１件はいずれも必須です。",
                 type: "error",
                 allowOutsideClick: false
             });
@@ -101,7 +101,7 @@ function selectCheckBox(mode){
         }else{
             Swal.fire({
                 title: "Memo app",
-                html: "Key, Memo はいずれも必須です。",
+                html: "１件はいずれも必須です。",
                 type: "error",
                 allowOutsideClick: false
             });
@@ -130,10 +130,10 @@ function viewStorage() {
         td3.innerHTML = localStorage.getItem(w_key);
     }
     //JQuery plugin tablesorter
-$("#table1").tablesorter({
-    sortList: [[1,0]]
-});
-$("#table1").trigger("update");
+    $("#table1").tablesorter({
+        sortList: [[1,0]]
+    });
+    $("#table1").trigger("update");
 }
 
 function delLocalStorage(){
@@ -180,7 +180,7 @@ function allClearLocalStorage(){
     allClear.addEventListener("click",
     function(e){
         e.preventDefault();
-            let w_msg = "LocalStorageのデータをすべて削除します。よろしですか？";
+            let w_msg = "LocalStorageのデータをすべて削除します。よろしいですか？";
             Swal.fire({
                 title: "Memo app",
                 html: w_msg,
@@ -192,7 +192,7 @@ function allClearLocalStorage(){
                     viewStorage();
                     Swal.fire({
                         title: "Memo app",
-                        html: w_msg,
+                        html: "LocalStorageのデータをすべて削除しました。",
                         type: "success",
                         allowOutsideClick: false
                     })

@@ -86,7 +86,7 @@ textarea{
 
 /* ★自分でコーディングする！(code by yourself)...  疑似要素「::placeholder」を使って、textareaの文字の色を定義する。*/
 textarea::placeholder {
-  color: rgb(20, 20, 20);
+  color: rgba(20, 20, 20,.3);
 }
 /* ボタン */
 .btn-area{
