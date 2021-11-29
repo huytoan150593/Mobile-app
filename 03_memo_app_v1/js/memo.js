@@ -90,7 +90,7 @@ function selectCheckBox(mode){
         }else{
             Swal.fire({
                 title: "Memo app",
-                html: "１件はいずれも必須です。",
+                html: "１件選択してください。",
                 type: "error",
                 allowOutsideClick: false
             });
@@ -101,7 +101,7 @@ function selectCheckBox(mode){
         }else{
             Swal.fire({
                 title: "Memo app",
-                html: "１件はいずれも必須です。",
+                html: "１件選択してください。",
                 type: "error",
                 allowOutsideClick: false
             });
