@@ -15,7 +15,7 @@ const c_3 = document.querySelector("#c_3");
 
 const mgstxt1 = '<p class="image"><img src="./img/penguins.jpg" width="61px" height="61px" alt=""></p><p>Peguins Attack!</p>';
 const mgstxt2 = '<p class="image"><img src="./img/whitebear.jpg" width="61px" height="61px" alt=""></p><p>WhiteBear Attack!</p>';
-
+const mgstxt3 = '<p>DRAW</p>'
 
 window.addEventListener("DOMContentLoaded", 
     function(){
@@ -53,32 +53,37 @@ c_3.addEventListener("click", () => {
 
 function isSelect(selectSquare){
     if(flag === true){
-        selectSquare.classList.add(".js-pen-checked");
-        selectSquare.classList.add(".js-unclickable");
-        // setMessage("bear-turn");
+        selectSquare.classList.add("js-pen-checked");
+        selectSquare.classList.add("js-unclickable");
+        setMessage("bear-turn");
         flag = false;
     }else{
-        selectSquare.classList.add(".js-bear-checked");
-        selectSquare.classList.add(".js-unclickable");
-        // setMessage("pen-turn");
+        selectSquare.classList.add("js-bear-checked");
+        selectSquare.classList.add("js-unclickable");
+        setMessage("pen-turn");
         flag = true;
     }
 
     counter--;
     if(counter === 0){
-        // setMessage("draw");
+        setMessage("draw");
     }
 }
 
 function setMessage(id){
-    const element = document.querySelector("#msgtext");
+    const node = document.querySelector("#msgtext");
     switch(id){
-        case "pen-turn": element.appendChild(mgstxt1);
+        case "pen-turn":
+            node.innerHTML -= mgstxt2;
+            node.innerHTML += mgstxt1;
             break;
-        case "bear-turn": element.appendChild(mgstxt2);
+        case "bear-turn":
+            node.innerHTML -= mgstxt1;
+            node.innerHTML += mgstxt2;
             break;
         case "draw":
-            break;
+            node.innerHTML -= mgstxt1;
+            node.innerHTML += mgstxt3;
         default:
             break;
     }
