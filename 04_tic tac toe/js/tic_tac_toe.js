@@ -19,7 +19,7 @@ const mgstxt3 = '<p>DRAW</p>'
 
 window.addEventListener("DOMContentLoaded", 
     function(){
-        // setMessage("pen-turn");
+        setMessage("pen-turn");
     }, false);
 
 a_1.addEventListener("click", () => {
@@ -74,16 +74,13 @@ function setMessage(id){
     const node = document.querySelector("#msgtext");
     switch(id){
         case "pen-turn":
-            node.innerHTML -= mgstxt2;
-            node.innerHTML += mgstxt1;
+            node.innerHTML = mgstxt1;
             break;
         case "bear-turn":
-            node.innerHTML -= mgstxt1;
-            node.innerHTML += mgstxt2;
+            node.innerHTML = mgstxt2;
             break;
         case "draw":
-            node.innerHTML -= mgstxt1;
-            node.innerHTML += mgstxt3;
+    
         default:
             break;
     }
