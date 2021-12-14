@@ -31,9 +31,9 @@ let winningLine = null;
 
 const msgtxt1 = '<p class="image"><img src="./img/penguins.jpg" width="61px" height="61px" alt=""></p><p>Peguins Attack!</p>';
 const msgtxt2 = '<p class="image"><img src="./img/whitebear.jpg" width="61px" height="61px" alt=""></p><p>WhiteBear Attack!</p>';
-const msgtxt3 = '<p class="image"><img src="./img/penguins.jpg" width="61px" height="61px"></p><p class="animate_animated animate_lightSpeedInRight">Peguins Win!</p>';
-const msgtxt4 = '<p class="image"><img src="./img/whitebear.jpg" width="61px" height="61px"></p><p class="animate_animated animate_lightSpeedInLeft">WhiteBear Win!</p>';
-const msgtxt5 = '<p class="image"><img src="./img/penguins.jpg" width="61px" height="61px"><img src="./img/whitebear.jpg" width="61px" height="61px"></p><p class="text animate_bounceIn">Draw!!</p>';
+const msgtxt3 = '<p class="image"><img src="./img/penguins.jpg" width="61px" height="61px"></p><p class="animate__animated animate__lightSpeedInRight">Peguins Win!</p>';
+const msgtxt4 = '<p class="image"><img src="./img/whitebear.jpg" width="61px" height="61px"></p><p class="animate__animated animate__lightSpeedInLeft">WhiteBear Win!</p>';
+const msgtxt5 = '<p class="image"><img src="./img/penguins.jpg" width="61px" height="61px"><img src="./img/whitebear.jpg" width="61px" height="61px"></p><p class="text animate__bounceIn">Draw!!</p>';
 
 window.addEventListener("DOMContentLoaded", 
     function(){
