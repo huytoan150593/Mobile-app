@@ -16,6 +16,9 @@ const c_1 = document.querySelector("#c_1");
 const c_2 = document.querySelector("#c_2");
 const c_3 = document.querySelector("#c_3");
 
+const newgamebtn_display = document.querySelector("#newgame-btn");
+const newgamebtn = document.querySelector("#btn90");
+
 const line1 = JudgLine(squaresArray, ["a_1", "a_2", "a_3"]);
 const line2 = JudgLine(squaresArray, ["b_1", "b_2", "b_3"]);
 const line3 = JudgLine(squaresArray, ["c_1", "c_2", "c_3"]);
@@ -79,6 +82,7 @@ function isSelect(selectSquare){
         selectSquare.classList.add("js-unclickable");
         if(isWinner("penguins") === true){
             setMessage("pen-win");
+            gameOver("penguins");
             return;
         }
         setMessage("bear-turn");
@@ -88,6 +92,7 @@ function isSelect(selectSquare){
         selectSquare.classList.add("js-unclickable");
         if(isWinner("bear") === true){
             setMessage("bear-win");
+            gameOver("bear");
             return;
         }
         setMessage("pen-turn");
@@ -97,6 +102,7 @@ function isSelect(selectSquare){
     counter--;
     if(counter === 0){
         setMessage("draw");
+        gameOver("draw");
     }
 }
 
@@ -137,4 +143,40 @@ function isWinner(symbol){
         return subResult;
     });
     return result;
+}
+
+function gameOver(status) {
+    squaresArray.forEach(function(square){
+        square.classList.add("is-unclickable");
+    });
+
+    if(status === "penguins"){
+        if(winningLine){
+            winningLine.forEach(function(square){
+                square.classList.add("js-pen_hightLight");
+            });
+        }
+        $(document).snowfall({
+            flakeColor: "rbg(255,240,245)",
+            maxSpeed: 3,
+            minSpeed: 1,
+            maxSize: 20,
+            minSize: 10,
+            round: true
+        });
+    }else if(status == "bear"){
+        if(winningLine){
+            winningLine.forEach(function(square){
+                square.classList.add("js-bear_hightLight");
+            });
+        }
+        $(document).snowfall({
+            flakeColor: "rbg(255,240,245)",
+            maxSpeed: 3,
+            minSpeed: 1,
+            maxSize: 20,
+            minSize: 10,
+            round: true
+        });
+    }
 }
