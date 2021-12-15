@@ -27,8 +27,7 @@ const line5 = JudgLine(squaresArray, ["a_2", "b_2", "c_2"]);
 const line6 = JudgLine(squaresArray, ["a_3", "b_3", "c_3"]);
 const line7 = JudgLine(squaresArray, ["a_1", "b_2", "c_3"]);
 const line8 = JudgLine(squaresArray, ["a_3", "b_2", "c_1"]);
-console.log(line1);
-console.log(line2);
+
 const lineArray = [line1, line2, line3, line4, line5, line6, line7, line8];
 let winningLine = null;
 
@@ -147,31 +146,31 @@ function isWinner(symbol){
 
 function gameOver(status) {
     squaresArray.forEach(function(square){
-        square.classList.add("is-unclickable");
+        square.classList.add("js-unclickable");
     });
-
+    newgamebtn_display.classList.remove("js-hidden");
     if(status === "penguins"){
         if(winningLine){
             winningLine.forEach(function(square){
-                square.classList.add("js-pen_hightLight");
+                square.classList.add("js-pen_highLight");
             });
         }
         $(document).snowfall({
-            flakeColor: "rbg(255,240,245)",
+            flakeColor: "rgb(255,240,245)",
             maxSpeed: 3,
             minSpeed: 1,
             maxSize: 20,
             minSize: 10,
             round: true
         });
-    }else if(status == "bear"){
+    }else if(status === "bear"){
         if(winningLine){
             winningLine.forEach(function(square){
-                square.classList.add("js-bear_hightLight");
+                square.classList.add("js-bear_highLight");
             });
         }
         $(document).snowfall({
-            flakeColor: "rbg(255,240,245)",
+            flakeColor: "rgb(175,238,238)",
             maxSpeed: 3,
             minSpeed: 1,
             maxSize: 20,
@@ -180,3 +179,21 @@ function gameOver(status) {
         });
     }
 }
+
+//New game button 
+
+newgamebtn.addEventListener("click",function(){
+    flag = true;
+    counter = 9;
+    winningLine = null;
+    squaresArray.forEach(function(square){
+        square.classList.remove("js-pen-checked");
+        square.classList.remove("js-bear-checked");
+        square.classList.remove("js-unclickable");
+        square.classList.remove("js-pen_highLight");
+        square.classList.remove("js-bear_highLight");
+        setMessage("pen-turn");
+        newgamebtn_display.classList.add("js-hidden");
+        $(document).snowfall("clear");
+    })
+}, false);

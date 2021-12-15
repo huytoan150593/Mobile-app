@@ -106,11 +106,11 @@ header {
     pointer-events: none;
 }
 
-.js-pen_hightLight{
+.js-pen_highLight{
     border: solid 2px red;
 }
 
-.js-bear_hightLight{
+.js-bear_highLight{
     border: solid 2px blue;
 }
 .btn {
