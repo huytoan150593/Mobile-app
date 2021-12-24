@@ -37,6 +37,8 @@ const msgtxt3 = '<p class="image"><img src="./img/penguins.jpg" width="61px" hei
 const msgtxt4 = '<p class="image"><img src="./img/whitebear.jpg" width="61px" height="61px"></p><p class="animate__animated animate__lightSpeedInLeft">WhiteBear Win!</p>';
 const msgtxt5 = '<p class="image"><img src="./img/penguins.jpg" width="61px" height="61px"><img src="./img/whitebear.jpg" width="61px" height="61px"></p><p class="text animate__bounceIn">Draw!!</p>';
 
+let gameSound = ["sound/click_sound1.mp3", "sound/click_sound2.mp3", "sound/penwin_sound.mp3", "sound/bearwin_sound.mp3", "sound/draw_sound.mp3"];
+
 window.addEventListener("DOMContentLoaded", 
     function(){
         setMessage("pen-turn");
@@ -77,6 +79,10 @@ function JudgLine(targetArray, idArray){
 }
 function isSelect(selectSquare){
     if(flag === true){
+        let music = new Audio(gameSound[0]);
+        music.currentTime = 0;
+        music.play();
+
         selectSquare.classList.add("js-pen-checked");
         selectSquare.classList.add("js-unclickable");
         if(isWinner("penguins") === true){
@@ -87,6 +93,10 @@ function isSelect(selectSquare){
         setMessage("bear-turn");
         flag = false;
     }else{
+        let music = new Audio(gameSound[1]);
+        music.currentTime = 0;
+        music.play();
+
         selectSquare.classList.add("js-bear-checked");
         selectSquare.classList.add("js-unclickable");
         if(isWinner("bear") === true){
@@ -145,6 +155,23 @@ function isWinner(symbol){
 }
 
 function gameOver(status) {
+    let w_sound;
+    switch(status){
+        case "penguins":
+            w_sound = gameSound[2];
+            break;
+        case "bear":
+            w_sound = gameSound[3];
+            break;
+        case "draw":
+            w_sound = gameSound[4];
+            break; 
+    }
+
+    let music = new Audio(w_sound);
+    music.currentTime = 0;
+    music.play();
+
     squaresArray.forEach(function(square){
         square.classList.add("js-unclickable");
     });
