@@ -222,9 +222,11 @@ newgamebtn.addEventListener("click",function(){
 }, false); 
 
 function bearTurn(){
-    let gameOverFlg = "0";
+    let gameOverFlg;
     let bearSquare = squaresArray.filter((square) => square.classList.contains("js-clickable"));
     let n = Math.floor(Math.random() * bearSquare.length);
     gameOverFlg = isSelect(bearSquare[n]);
-    document.querySelector("#squaresBox").classList.remove("js-unclickable");
+    if(gameOverFlg === "0"){
+        document.querySelector("#squaresBox").classList.remove("js-unclickable"); 
+    }
 }
