@@ -222,11 +222,56 @@ newgamebtn.addEventListener("click",function(){
 }, false); 
 
 function bearTurn(){
-    let gameOverFlg;
-    let bearSquare = squaresArray.filter((square) => square.classList.contains("js-clickable"));
-    let n = Math.floor(Math.random() * bearSquare.length);
-    gameOverFlg = isSelect(bearSquare[n]);
+    let bearTurnEnd = "0";
+    let gameOverFlg = "0";
+    while(bearTurnEnd === "0"){
+        bearTurnEnd = isReach("bear");
+        if(bearTurnEnd === "1"){
+            gameOverFlg = "1";
+            break;
+        }
+
+        bearTurnEnd = isReach("penguins");
+        if(bearTurnEnd === "1") break;
+
+        const bearSquare = squaresArray.filter((square) => square.classList.contains("js-clickable"));
+        let n = Math.floor(Math.random() * bearSquare.length);
+        gameOverFlg = isSelect(bearSquare[n]);
+        break;
+    }
+
     if(gameOverFlg === "0"){
         document.querySelector("#squaresBox").classList.remove("js-unclickable"); 
     }
+}
+
+function isReach(status){
+    let bearTurnEnd = "0";
+    lineArray.some(line => {
+        let bearCheckCnt = 0;
+        let penCheckCnt = 0;
+
+        line.forEach(square => {
+            if(square.classList.contains("js-bear-checked")) bearCheckCnt++;
+            if(square.classList.contains("js-pen-checked")) penCheckCnt++;
+        });
+
+        if(status === "bear" && bearCheckCnt === 2 && penCheckCnt === 0){
+            bearTurnEnd = "1";
+        }
+        if(status === "penguins" && bearCheckCnt === 0 && penCheckCnt === 2){
+            bearTurnEnd = "1";
+        }
+        // Select square to Win
+        if(bearTurnEnd === "1"){
+            line.some(square => {
+                if(square.classList.contains("js-clickable")){
+                    isSelect(square);
+                    return true;
+                }
+            })
+        }
+        return true
+    })
+    return bearTurnEnd;
 }
