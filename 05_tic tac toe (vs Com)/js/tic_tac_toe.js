@@ -34,8 +34,8 @@ const line6 = JudgLine(squaresArray, ["a_3", "b_3", "c_3"]);
 const line7 = JudgLine(squaresArray, ["a_1", "b_2", "c_3"]);
 const line8 = JudgLine(squaresArray, ["a_3", "b_2", "c_1"]);
 
-const lineCorner2 = triangle(squaresArray, ["a_2", "b_3"]);
 const lineCorner1 = triangle(squaresArray, ["a_2", "b_1"]);
+const lineCorner2 = triangle(squaresArray, ["a_2", "b_3"]);
 const lineCorner3 = triangle(squaresArray, ["b_1", "c_2"]);
 const lineCorner4 = triangle(squaresArray, ["c_2", "b_3"]);
 
@@ -330,6 +330,7 @@ function bearTurn(){
                 break;
             }
         }
+        // 追加ロジック --------- 1
         if(level === "3"){
             let index = 0;
             for(let line of triangleLine){
@@ -344,7 +345,7 @@ function bearTurn(){
             }
             if(bearTurnEnd === "1") break;
         }
-
+        // 追加ロジック --------- 2
         if(level === "3"){
             lineArray.some(line => {
                 const check = line.every(square => {
@@ -363,7 +364,6 @@ function bearTurn(){
             })
             if(bearTurnEnd === "1") break;
         }
-        
         
         if(level === "3"){
             for(let square of lineRandom){
