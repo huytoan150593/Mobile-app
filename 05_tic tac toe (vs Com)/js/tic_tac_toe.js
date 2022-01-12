@@ -16,6 +16,12 @@ const c_1 = document.querySelector("#c_1");
 const c_2 = document.querySelector("#c_2");
 const c_3 = document.querySelector("#c_3");
 
+const levels = document.querySelectorAll(".level");
+const levelsArray = Array.from(levels);
+const level_1 = document.querySelector("#level_1");
+const level_2 = document.querySelector("#level_2");
+const level_3 = document.querySelector("#level_3");
+
 const newgamebtn_display = document.querySelector("#newgame-btn");
 const newgamebtn = document.querySelector("#btn90");
 
@@ -29,6 +35,7 @@ const line7 = JudgLine(squaresArray, ["a_1", "b_2", "c_3"]);
 const line8 = JudgLine(squaresArray, ["a_3", "b_2", "c_1"]);
 
 const lineArray = [line1, line2, line3, line4, line5, line6, line7, line8];
+const lineRandom = cornerLine(squaresArray, ["a_1","a_3","c_1","c_3"]);
 let winningLine = null;
 
 const msgtxt1 = '<p class="image"><img src="./img/penguins.jpg" width="61px" height="61px" alt=""></p><p>Peguins Attack!(Your Turn)</p>';
@@ -42,11 +49,66 @@ let gameSound = ["sound/click_sound1.mp3", "sound/click_sound2.mp3", "sound/penw
 window.addEventListener("DOMContentLoaded", 
     function(){
         setMessage("pen-turn");
-        squaresArray.forEach((square) => square.classList.add("js-clickable"))    
+        squaresArray.forEach((square) => square.classList.add("js-clickable"));
+        LevelSetting(0);    
     }, false);
 
+// Set Level
+let index;
+levelsArray.forEach(level => {
+    level.addEventListener("click", () => {
+        index = [].slice.call(levelsArray).indexOf(level);
+        console.log(index);
+        LevelSetting(index);
+    });
+})
+
+function LevelSetting(index){
+    levelsArray.forEach(level => {
+        level.classList.remove("level-selected");
+        level.classList.remove("level-non-selected");
+    })
+
+    if(sessionStorage.getItem("tic_tac_toe_access")){
+        switch(index){
+            case 0:
+                sessionStorage.setItem("tic_tac_toe_access", "1");
+                level_1.classList.add("level-selected");
+                level_2.classList.add("level-non-selected");
+                level_3.classList.add("level-non-selected");
+                break;
+            case 1:
+                sessionStorage.setItem("tic_tac_toe_access", "2");
+                level_1.classList.add("level-non-selected");
+                level_2.classList.add("level-selected");
+                level_3.classList.add("level-non-selected");
+                break;
+            case 2:
+                sessionStorage.setItem("tic_tac_toe_access", "3");
+                level_1.classList.add("level-non-selected");
+                level_2.classList.add("level-non-selected");
+                level_3.classList.add("level-selected");
+                break;
+            default:
+                sessionStorage.setItem("tic_tac_toe_access", "1");
+                level_1.classList.add("level-selected");
+                level_2.classList.add("level-non-selected");
+                level_3.classList.add("level-non-selected");
+        }
+    }else{
+        sessionStorage.setItem("tic_tac_toe_access", "1");
+        level_1.classList.add("level-selected");
+        level_2.classList.add("level-non-selected");
+        level_3.classList.add("level-non-selected");
+    }
+}
+// ---------------------------------------------------------------------
 squaresArray.forEach(function(square){
     square.addEventListener('click', () => {
+        if(counter === 9){
+            const levelBox = document.querySelector("#levelBox");
+            levelBox.classList.add("js-unclickable");
+        }
         let gameOverFlg = isSelect(square);
         if(gameOverFlg === "0"){
             let squaresBox = document.querySelector("#squaresBox");
@@ -64,6 +126,11 @@ squaresArray.forEach(function(square){
 function JudgLine(targetArray, idArray){
     return targetArray.filter(function(e){
         return (e.id === idArray[0] || e.id === idArray[1] || e.id === idArray[2]);
+    });
+}
+function cornerLine(targetArray, idArray){
+    return targetArray.filter(function(e){
+        return (e.id === idArray[0] || e.id === idArray[1] || e.id === idArray[2] || e.id === idArray[3]);
     });
 }
 function isSelect(selectSquare){
@@ -216,24 +283,48 @@ newgamebtn.addEventListener("click",function(){
         square.classList.add("js-clickable");
     });
     squaresBox.classList.remove("js-unclickable");
+    levelBox.classList.remove("js-unclickable");
     setMessage("pen-turn");
     newgamebtn_display.classList.add("js-hidden");
     $(document).snowfall("clear");
 }, false); 
 
 function bearTurn(){
+    let level = sessionStorage.getItem("tic_tac_toe_access");
     let bearTurnEnd = "0";
     let gameOverFlg = "0";
     while(bearTurnEnd === "0"){
-        bearTurnEnd = isReach("bear");
-        if(bearTurnEnd === "1"){
-            gameOverFlg = "1";
-            break;
+        if(level === "1" || level === "2" || level === "3"){
+            bearTurnEnd = isReach("bear");
+            if(bearTurnEnd === "1"){
+                gameOverFlg = "1";
+                break;
+            }
+        }
+        
+        if(level === "2" || level === "3"){
+            bearTurnEnd = isReach("penguins");
+            if(bearTurnEnd === "1") break;
         }
 
-        bearTurnEnd = isReach("penguins");
-        if(bearTurnEnd === "1") break;
+        if(level === "2" || level === "3"){
+            if(b_2.classList.contains("js-clickable")){
+                gameOverFlg = isSelect(b_2);
+                bearTurnEnd = "1";
+                break;
+            }
+        }
 
+        if(level === "3"){
+            for(let square of lineRandom){
+                if(square.classList.contains("js-clickable")){
+                    gameOverFlg = isSelect(square);
+                    bearTurnEnd = "1";
+                    break;
+                }
+            }
+            if(bearTurnEnd === "1") break;
+        }
         const bearSquare = squaresArray.filter((square) => square.classList.contains("js-clickable"));
         let n = Math.floor(Math.random() * bearSquare.length);
         gameOverFlg = isSelect(bearSquare[n]);
@@ -267,11 +358,10 @@ function isReach(status){
             line.some(square => {
                 if(square.classList.contains("js-clickable")){
                     isSelect(square);
-                    return true;
                 }
             })
+            return true
         }
-        return true
     })
     return bearTurnEnd;
 }
