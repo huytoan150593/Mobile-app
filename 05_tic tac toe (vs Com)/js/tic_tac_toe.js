@@ -35,7 +35,9 @@ const line7 = JudgLine(squaresArray, ["a_1", "b_2", "c_3"]);
 const line8 = JudgLine(squaresArray, ["a_3", "b_2", "c_1"]);
 
 const lineArray = [line1, line2, line3, line4, line5, line6, line7, line8];
+
 const lineRandom = cornerLine(squaresArray, ["a_1","a_3","c_1","c_3"]);
+
 let winningLine = null;
 
 const msgtxt1 = '<p class="image"><img src="./img/penguins.jpg" width="61px" height="61px" alt=""></p><p>Peguins Attack!(Your Turn)</p>';
@@ -314,7 +316,24 @@ function bearTurn(){
                 break;
             }
         }
-
+        if(level === "3"){
+            lineArray.some(line => {
+                const check = line.every(square => {
+                    return !square.classList.contains("js-pen-checked");
+                })
+                if(check){
+                    for(let square of line){
+                        if(square.classList.contains("js-clickable")){
+                            gameOverFlg = isSelect(square);
+                            bearTurnEnd = "1";
+                            break;
+                        }
+                    }
+                }
+                return check;
+            })
+            if(bearTurnEnd === "1") break;
+        }
         if(level === "3"){
             for(let square of lineRandom){
                 if(square.classList.contains("js-clickable")){
