@@ -267,11 +267,10 @@ function isReach(status){
             line.some(square => {
                 if(square.classList.contains("js-clickable")){
                     isSelect(square);
-                    return true;
                 }
             })
+            return true
         }
-        return true
     })
     return bearTurnEnd;
 }
