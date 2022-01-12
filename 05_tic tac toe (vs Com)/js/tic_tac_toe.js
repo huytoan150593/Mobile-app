@@ -34,6 +34,14 @@ const line6 = JudgLine(squaresArray, ["a_3", "b_3", "c_3"]);
 const line7 = JudgLine(squaresArray, ["a_1", "b_2", "c_3"]);
 const line8 = JudgLine(squaresArray, ["a_3", "b_2", "c_1"]);
 
+const lineCorner2 = triangle(squaresArray, ["a_2", "b_3"]);
+const lineCorner1 = triangle(squaresArray, ["a_2", "b_1"]);
+const lineCorner3 = triangle(squaresArray, ["b_1", "c_2"]);
+const lineCorner4 = triangle(squaresArray, ["c_2", "b_3"]);
+
+const triangleCheck = [a_1, a_3, c_1, c_3];
+const triangleLine = [lineCorner1, lineCorner2, lineCorner3,lineCorner4];
+
 const lineArray = [line1, line2, line3, line4, line5, line6, line7, line8];
 
 const lineRandom = cornerLine(squaresArray, ["a_1","a_3","c_1","c_3"]);
@@ -133,6 +141,12 @@ function JudgLine(targetArray, idArray){
 function cornerLine(targetArray, idArray){
     return targetArray.filter(function(e){
         return (e.id === idArray[0] || e.id === idArray[1] || e.id === idArray[2] || e.id === idArray[3]);
+    });
+}
+
+function triangle(targetArray, idArray){
+    return targetArray.filter(function(e){
+        return (e.id === idArray[0] || e.id === idArray[1]);
     });
 }
 function isSelect(selectSquare){
@@ -317,6 +331,21 @@ function bearTurn(){
             }
         }
         if(level === "3"){
+            let index = 0;
+            for(let line of triangleLine){
+                const check = line.every(square =>{
+                    return square.classList.contains("js-pen-checked") && lineRandom[index].classList.contains("js-clickable");
+                })
+                if(check){
+                    gameOverFlg = isSelect(triangleCheck[index]);
+                    bearTurnEnd = "1";
+                    break;
+                }else{ index++; }
+            }
+            if(bearTurnEnd === "1") break;
+        }
+
+        if(level === "3"){
             lineArray.some(line => {
                 const check = line.every(square => {
                     return !square.classList.contains("js-pen-checked");
@@ -334,6 +363,8 @@ function bearTurn(){
             })
             if(bearTurnEnd === "1") break;
         }
+        
+        
         if(level === "3"){
             for(let square of lineRandom){
                 if(square.classList.contains("js-clickable")){
