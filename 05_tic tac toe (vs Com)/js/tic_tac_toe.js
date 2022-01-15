@@ -39,8 +39,8 @@ const lineCorner2 = triangle(squaresArray, ["a_2", "b_3"]);
 const lineCorner3 = triangle(squaresArray, ["b_1", "c_2"]);
 const lineCorner4 = triangle(squaresArray, ["c_2", "b_3"]);
 
-const triangleCheck = [a_1, a_3, c_1, c_3];
-const triangleLine = [lineCorner1, lineCorner2, lineCorner3,lineCorner4];
+const triangleCheck = [c_1, c_3, a_1, a_3];
+const triangleLine = [lineCorner1, lineCorner2, lineCorner3, lineCorner4];
 
 const lineArray = [line1, line2, line3, line4, line5, line6, line7, line8];
 
@@ -237,10 +237,10 @@ function gameOver(status) {
     let w_sound;
     switch(status){
         case "penguins":
-            w_sound = gameSound[2];
+            w_sound = gameSound[3];
             break;
         case "bear":
-            w_sound = gameSound[3];
+            w_sound = gameSound[2];
             break;
         case "draw":
             w_sound = gameSound[4];
@@ -408,9 +408,10 @@ function isReach(status){
             line.some(square => {
                 if(square.classList.contains("js-clickable")){
                     isSelect(square);
+                    return true;
                 }
             })
-            return true
+            return true;
         }
     })
     return bearTurnEnd;
