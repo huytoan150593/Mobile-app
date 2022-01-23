@@ -332,6 +332,22 @@ function bearTurn(){
         }
         // 追加ロジック --------- 1
         if(level === "3"){
+            const check1 = a_1.classList.contains("js-pen-checked");
+            const check2 = b_3.classList.contains("js-pen-checked");
+            const check3 = c_1.classList.contains("js-pen-checked");
+            if(check1 && check2){
+                gameOverFlg = isSelect(a_3);
+                bearTurnEnd = "1";
+                break;
+            }
+            if(check2 && check3){
+                gameOverFlg = isSelect(c_3);
+                bearTurnEnd = "1";
+                break;
+            }
+        }
+        // 追加ロジック --------- 2
+        if(level === "3"){
             let index = 0;
             for(let line of triangleLine){
                 const check = line.every(square =>{
@@ -345,7 +361,7 @@ function bearTurn(){
             }
             if(bearTurnEnd === "1") break;
         }
-        // 追加ロジック --------- 2
+        // 追加ロジック --------- 3
         if(level === "3"){
             lineArray.some(line => {
                 const check = line.every(square => {
