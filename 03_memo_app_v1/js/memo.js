@@ -119,15 +119,18 @@ function viewStorage() {
         let td1 = document.createElement("td");
         let td2 = document.createElement("td");
         let td3 = document.createElement("td");
+        let td4 = document.createElement("td");
 
         list.appendChild(tr);
         tr.appendChild(td1);
         tr.appendChild(td2);
         tr.appendChild(td3);
+        tr.appendChild(td4);
 
         td1.innerHTML = "<input name='chkbox1' type='checkbox'>";
         td2.innerHTML = w_key;
         td3.innerHTML = localStorage.getItem(w_key);
+        td4.innerHTML = "<img src='./img/trash_icon.png' class='trash'>"
     }
     //JQuery plugin tablesorter
     $("#table1").tablesorter({
@@ -173,6 +176,38 @@ function delLocalStorage(){
             });
         }
     },false);
+
+    const table1 = document.getElementById("table1");
+    table1.addEventListener("click", (e) => {
+        if(e.target.classList.contains("trash") === true){
+            let parent = e.target.closest('td');
+            let eprev = parent.previousElementSibling;
+            let eprevprev = eprev.previousElementSibling;
+            let key = eprevprev.firstChild.data;
+            let value = eprev.firstChild.data;
+            let w_delete = `LocalStorageから\n「{key} ${value}」 \nを削除しますか？`;
+            Swal.fire({
+                title: "Memo app",
+                html: w_delete,
+                type: "question",
+                showCancelButton: true
+            }).then(result => {
+                if(result.value === true){
+                    localStorage.removeItem(key);
+                    viewStorage();
+                    let w_msg = `LocalStorageから ${key} ${value} を削除しました！`;
+                    Swal.fire({
+                        title: "Memo app",
+                        html: w_msg,
+                        type: "success",
+                        allowOutsideClick: false
+                    });
+                    document.getElementById("textKey").value = "";
+                    document.getElementById("textMemo").value = "";
+                }
+            })
+        }
+    })
 }
 
 function allClearLocalStorage(){

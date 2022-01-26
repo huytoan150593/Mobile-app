@@ -68,7 +68,6 @@ let index;
 levelsArray.forEach(level => {
     level.addEventListener("click", () => {
         index = [].slice.call(levelsArray).indexOf(level);
-        console.log(index);
         LevelSetting(index);
     });
 })
@@ -335,12 +334,12 @@ function bearTurn(){
             const check1 = a_1.classList.contains("js-pen-checked");
             const check2 = b_3.classList.contains("js-pen-checked");
             const check3 = c_1.classList.contains("js-pen-checked");
-            if(check1 && check2){
+            if(check1 && check2 && a_3.classList.contains("js-clickable")){
                 gameOverFlg = isSelect(a_3);
                 bearTurnEnd = "1";
                 break;
             }
-            if(check2 && check3){
+            if(check2 && check3 && c_3.classList.contains("js-clickable")){
                 gameOverFlg = isSelect(c_3);
                 bearTurnEnd = "1";
                 break;
@@ -361,6 +360,15 @@ function bearTurn(){
             }
             if(bearTurnEnd === "1") break;
         }
+        if(level === "3"){
+            const check1 = b_2.classList.contains("js-pen-checked");
+            const check2 = c_3.classList.contains("js-pen-checked");
+            if(check1 && check2 && a_3.classList.contains("js-clickable")){
+                gameOverFlg = isSelect(a_3);
+                bearTurnEnd = "1";
+                break;
+            }
+        }
         // 追加ロジック --------- 3
         if(level === "3"){
             lineArray.some(line => {
@@ -374,7 +382,7 @@ function bearTurn(){
                             bearTurnEnd = "1";
                             break;
                         }
-                    }
+                    }  
                 }
                 return check;
             })
